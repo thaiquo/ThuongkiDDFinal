@@ -12,7 +12,8 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      <BookListScreen />
+      {/* đảm bảo khi nhấn vào hiển thị danh sách ui hiển thị đẹp  */}
+      <BookListScreen />  
     </SafeAreaView>
   );
 }
