@@ -115,6 +115,11 @@ export function useBooks() {
   }, []);
 
   /** Search + filter */
+  //searchQuery, setSearchQuery
+
+//statusFilter, setStatusFilter
+
+//visibleBooks = useMemo(...) filter theo title + status.
   const visibleBooks = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
 
