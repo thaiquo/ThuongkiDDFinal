@@ -102,30 +102,20 @@ const BookListScreen: React.FC = () => {
                 : "Done"
             }
             onPress={() => setStatusFilter(st as any)}
-            color={
-              statusFilter === st ? "#0d6efd" : "#adb5bd"
-            }
+            color={statusFilter === st ? "#0d6efd" : "#adb5bd"}
           />
         ))}
       </View>
 
       {/* Nút thêm + import + reload */}
       <View style={styles.topRow}>
-        <Button
-          title="Thêm sách"
-          onPress={openAddModal}
-          disabled={isBusy}
-        />
+        <Button title="Thêm sách" onPress={openAddModal} disabled={isBusy} />
         <Button
           title={importing ? "Đang import..." : "Import từ API"}
           onPress={importFromApi}
           disabled={importing}
         />
-        <Button
-          title="Tải lại"
-          onPress={reload}
-          disabled={loading}
-        />
+        <Button title="Tải lại" onPress={reload} disabled={loading} />
       </View>
 
       {loading && (
@@ -134,14 +124,10 @@ const BookListScreen: React.FC = () => {
         </View>
       )}
 
-      {error && !loading && (
-        <Text style={styles.errorText}>Lỗi: {error}</Text>
-      )}
+      {error && !loading && <Text style={styles.errorText}>Lỗi: {error}</Text>}
 
       {!loading && visibleBooks.length === 0 && !error && (
-        <Text style={styles.emptyText}>
-          Chưa có sách trong danh sách đọc.
-        </Text>
+        <Text style={styles.emptyText}>Chưa có sách trong danh sách đọc.</Text>
       )}
 
       {!loading && visibleBooks.length > 0 && (
@@ -150,10 +136,7 @@ const BookListScreen: React.FC = () => {
           keyExtractor={(item) => item.id.toString()}
           contentContainerStyle={styles.list}
           refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={reload}
-            />
+            <RefreshControl refreshing={refreshing} onRefresh={reload} />
           }
           renderItem={({ item }) => (
             <BookItem
@@ -163,9 +146,7 @@ const BookListScreen: React.FC = () => {
                 setEditingBook(item);
                 setModalVisible(true);
               }}
-              onDelete={() =>
-                handleDeleteWithConfirm(item.id)
-              }
+              onDelete={() => handleDeleteWithConfirm(item.id)}
             />
           )}
         />
@@ -173,11 +154,11 @@ const BookListScreen: React.FC = () => {
 
       <BookModal
         visible={modalVisible}
-        heading={
-          editingBook ? "Sửa sách" : "Thêm sách mới"
-        }
+        heading={editingBook ? "Sửa sách" : "Thêm sách mới"}
         initialTitle={editingBook?.title}
         initialAuthor={editingBook?.author}
+        initialStatus={editingBook?.status}
+        showStatusPicker={!!editingBook}
         onClose={closeModal}
         onSubmit={handleSubmitModal}
       />
