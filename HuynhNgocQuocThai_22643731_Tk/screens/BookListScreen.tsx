@@ -58,6 +58,8 @@ const BookListScreen: React.FC = () => {
     closeModal();
   };
 
+  // Nút Xóa trên từng item
+  //Hiện Alert xác nhận
   const handleDeleteWithConfirm = (id: number) => {
     Alert.alert(
       "Xóa sách",
